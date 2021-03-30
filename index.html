@@ -17,5 +17,22 @@
 <body>
     <h1 id="days">###</h1>
     <h2>Days until Christmas</h2>
+    <script>
+        function days(now, month, day) {
+            let nowDate = new Date(now);
+            let checkDate;
+            if (nowDate.getMonth() > month) {
+                checkDate = new Date(nowDate.getFullYear()+1, month, day);
+            } else if (nowDate.getMonth() === month && nowDate.getDate() > day) {
+                checkDate = new Date(nowDate.getFullYear()+1, month, day);
+            } else {
+                checkDate = new Date(nowDate.getFullYear(), month, day);
+            }
+            console.log((checkDate.valueOf()-nowDate.valueOf())/1000/3600/24);
+            console.log(Math.round((checkDate.valueOf()-nowDate.valueOf())/1000/3600/24));
+            document.querySelector("#days").innerHTML = Math.round((checkDate.valueOf()-nowDate.valueOf())/1000/3600/24);
+        }
+        days(Date.now(), 11, 25); //Month is indexed from 0 day is not
+    </script>
 </body>
 </html>
